@@ -1,0 +1,14 @@
+auth:
+  expiryduration: 3600
+  expirylongduration: 30
+  secretkey: random30293339393securedkey
+restserver:
+  address: localhost
+  port: 8080
+database:
+  driver: mysql
+  host: localhost
+  port: 3306
+  username: owner
+  password: owner
+  dbname: wms
