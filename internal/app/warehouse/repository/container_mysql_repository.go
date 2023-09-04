@@ -36,6 +36,20 @@ func (r *MySqlContainerRepository) Delete(containerID int64) error {
 	return err
 }
 
+func (r *MySqlContainerRepository) GetByCode(code string) (*domain.Container, error) {
+	query := "SELECT id, type, code, name, address, status, created_at, updated_at, last_updated_by FROM containers WHERE code = ?"
+	row := r.conn.GetDB().QueryRow(query, code)
+	container := &domain.Container{}
+	err := row.Scan(&container.ID, &container.Type, &container.Code, &container.Name, &container.Address, &container.Status, &container.CreatedAt, &container.UpdatedAt, &container.LastUpdatedBy)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return nil, customerrors.ErrResourceNotFound
+		}
+		return nil, err
+	}
+	return container, nil
+}
+
 func (r *MySqlContainerRepository) GetById(containerID int64) (*domain.Container, error) {
 	query := "SELECT id, type, code, name, address, status, created_at, updated_at, last_updated_by FROM containers WHERE id = ?"
 	row := r.conn.GetDB().QueryRow(query, containerID)

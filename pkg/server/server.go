@@ -41,16 +41,6 @@ func (s *Server) Run() {
 	s.ProductModule.RegisterRoutes(r.PathPrefix("/secure").Subrouter())
 	s.WarehouseModule.RegisterRoutes(r.PathPrefix("/secure").Subrouter())
 
-	// c := cors.New(cors.Options{
-	// 	AllowedOrigins:   []string{"http://localhost:3000"}, // Your allowed origin
-	// 	AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE"},
-	// 	AllowedHeaders:   []string{"Authorization", "Content-Type"}, // You can add any required headers here
-	// 	AllowCredentials: true,
-	// })
-
-	// Wrap the router with the CORS handler
-	// handler := c.Handler(r)
-
 	log.Printf("Server started on %s:%d", s.Address, s.Port)
 	server := &http.Server{
 		Addr:    fmt.Sprintf("%s:%d", s.Address, s.Port),
