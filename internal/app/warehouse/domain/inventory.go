@@ -24,7 +24,7 @@ type Inventory struct {
 	Batch      string        `json:"batch"`
 	Machine    string        `json:"machine"`
 	Shift      string        `json:"shift"`
-	Supervisor string        ``
+	Supervisor string        `json:"supervisor"`
 	Quantity   float64       `json:"quantity"`
 	Unit       string        `json:"unit"`
 	StockInAt  time.Time     `json:"stockin_at"`
